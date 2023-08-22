@@ -6,7 +6,6 @@ from dataclasses import dataclass
 load_dotenv()
 
 
-@dataclass
 class APICall:
     CLIENT_ID = getenv('CLIENT_ID')
     CLIENT_SECRET = getenv('CLIENT_SECRET')

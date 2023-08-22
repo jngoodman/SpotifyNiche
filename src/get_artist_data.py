@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from .constants import TERMS
 
 
-@dataclass
 class GetArtistData:
     names_by_term = {}
     pops_by_term = {}
