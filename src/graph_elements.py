@@ -1,6 +1,6 @@
-from handle_data import get_means
+from .handle_data import get_means
 from matplotlib import patches, pyplot as plt
-from constants import GRAPH, TEXT, ALL_TERMS_FLAG_DICT
+from .constants import GRAPH, TEXT, ALL_TERMS_FLAG_DICT
 
 
 class BarElements:

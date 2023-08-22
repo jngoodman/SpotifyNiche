@@ -64,3 +64,9 @@ ALL_TERMS_FLAG_DICT = {
     'medium_term': False
 }
 
+INPUT_REQUEST_KEYS = {
+    's': 'short_term',
+    'm': 'medium_term',
+    'l': 'long_term',
+    'all': 'all_terms'
+}

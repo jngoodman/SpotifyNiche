@@ -1,5 +1,5 @@
 from statistics import mean
-from constants import TERMS
+from .constants import TERMS
 
 
 def get_all_terms_subsets(dataframe):

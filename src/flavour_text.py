@@ -1,5 +1,5 @@
-from constants import GRAPH, TEXT, ALL_TERMS_FLAG_DICT
-from handle_data import get_means, get_all_terms_subsets
+from .constants import GRAPH, TEXT, ALL_TERMS_FLAG_DICT
+from .handle_data import get_means, get_all_terms_subsets
 from matplotlib import pyplot as plt
 
 

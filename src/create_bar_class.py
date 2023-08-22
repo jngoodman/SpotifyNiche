@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
-from constants import GRAPH
-from flavour_text import FlavourText
-from graph_elements import BarElements
+from .constants import GRAPH
+from .flavour_text import FlavourText
+from .graph_elements import BarElements
 
 
 class Bar:

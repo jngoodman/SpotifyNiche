@@ -1,6 +1,6 @@
-from authentication import APICall
+from .authentication import APICall
 from dataclasses import dataclass
-from constants import TERMS
+from .constants import TERMS
 
 
 @dataclass

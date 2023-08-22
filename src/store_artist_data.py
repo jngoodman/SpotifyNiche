@@ -1,4 +1,4 @@
-from get_artist_data import GetArtistData
+from .get_artist_data import GetArtistData
 from pandas import DataFrame, concat
 
 
