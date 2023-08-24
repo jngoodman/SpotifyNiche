@@ -1,4 +1,4 @@
-from src.__init__ import construct_bar, create_db, APICall
+from src.__init__ import construct_bar, create_db
 
 
 def main():
