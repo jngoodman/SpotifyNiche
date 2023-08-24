@@ -1,7 +1,6 @@
 from spotipy import Spotify, oauth2, SpotifyOAuth
 from dotenv import load_dotenv
 from os import getenv
-from dataclasses import dataclass
 
 load_dotenv()
 
@@ -18,4 +17,3 @@ class APICall:
             scope='user-top-read'
         )
     )
-

@@ -29,7 +29,6 @@ class GRAPH:
         'short_term': 'Short Term',
         'medium_term': 'Medium Term',
         'long_term': 'Long Term',
-        'all_terms': 'All Time Ranges'
     }
     VLINES = {
         'thin': 3,
@@ -48,25 +47,11 @@ class GRAPH:
 
 
 class TEXT:
-    TERM_LIST = ['Short Term', 'Medium Term', 'Long Term']
-    TERM_LIST_EXT = ['Short Term (~4 weeks)', 'Medium Term (~6 months)', 'Long Term (>1 year)']
+    TERM_DICT = {'short_term': 'Short Term (~4 weeks)',
+                 'medium_term': 'Medium Term (~6 months)',
+                 'long_term': 'Long Term (>1 year)'}
     MOST_POPULAR = "Most popular top artist:"
     LEAST_POPULAR = "Least popular top artist:"
     POPULARITY = "Average popularity:"
     DIRECTION_INTRO = "The average popularity of your top artists " \
                       "\nhas"
-
-
-ALL_TERMS_FLAG_DICT = {
-    'all_terms': True,
-    'short_term': False,
-    'long_term': False,
-    'medium_term': False
-}
-
-INPUT_REQUEST_KEYS = {
-    's': 'short_term',
-    'm': 'medium_term',
-    'l': 'long_term',
-    'all': 'all_terms'
-}

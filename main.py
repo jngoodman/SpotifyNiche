@@ -1,13 +1,21 @@
-from src.__init__ import Bar, get_dataframes, INPUT_REQUEST_KEYS
+from src.__init__ import construct_bar, create_db
 
 
 def main():
-    request_key = input("What time range would you like to view? (S/M/L/All): ").lower()
-    key = INPUT_REQUEST_KEYS[request_key]
-    bar = Bar(dataframe_dict=get_dataframes(), key=key)
-    bar.construct_bar()
-    bar.add_elements()
-    bar.show_bar()
+    """Accepts *args: short_term, medium_term or long_term, or any combination thereof."""
+    create_db()
+    requests_dict = {
+        's': 'short_term',
+        'm': 'medium_term',
+        'l': 'long_term'
+    }
+    insert_request = input("What would you like to insert? Any combination of (s/m/l): ").lower()
+    request_input_list = [request for request in insert_request]
+    request_output_list = []
+    for key, value in requests_dict.items():
+        if key in request_input_list:
+            request_output_list.append(value)
+    construct_bar(*request_output_list)
 
 
 if __name__ == "__main__":
