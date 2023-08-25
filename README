@@ -2,3 +2,5 @@
 2) Replace 'string' in the corresponding entries in the example.env in a new .env file with the obtained Client ID and Client Secret.
 3) Run main.py
 
+Upcoming changes: (1) New authorisation flow so user does not need to make Spotify App.
+                  (2) Django interface.
