@@ -3,6 +3,7 @@ from os import path
 
 
 def create_db():
+    """Creates SQL database and inserts processed Spotify data from GetArtistsData if database does not exist."""
     if not path.isfile("database.db"):
         connection = Connection()
         connection.create_connection("database.db")

@@ -8,7 +8,7 @@ def construct_bar(*args: str):
     bar = Bar(*args)
     bar.extract_data()
     bar.construct_bars()
-    bar.determine_display_key()
+    bar.determine_title_suffix()
     bar.adjust_axes()
     bar.adjust_labels()
     bar.add_elements()

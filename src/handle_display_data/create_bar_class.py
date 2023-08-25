@@ -8,10 +8,13 @@ from src.handle_display_data.graph_elements import BarElements
 class Bar:
 
     def __init__(self, *args):
-        self.terms = [*args]
+        """Accepts 'short_term', 'medium_term' and 'long_term' as appropriate *args."""
+        self.terms: list = [*args]
         self.data = None
 
     def extract_data(self):
+        """Creates an ad-hoc SQLite command to allow data from the database to be recovered in a pandas format
+        based on the terms requested in *args"""
         extraction_list = []
         counter = 1
         for term in self.terms:
@@ -24,9 +27,8 @@ class Bar:
         self.data = retrieve_from_db(sql_command, pandas=True)
 
     def construct_bars(self):
-        """Note normally you would plt.barh(x, y) but with duplicate artist_names it is necessary to plot popularity on
-        its range instead, which prevents pyplot's default deletion of duplicate artist_names. You can then just rename
-        the yticks to the entries in artist_name afterwards."""
+        """Generates pyplot figure. Plots popularity data on to its range to force inclusion of duplicates, then
+        substitutes range for the artist_name values."""
         data_range = range(len(self.data['popularity']))
         plt.figure(figsize=GRAPH.FIGURESIZE)
         plt.subplots_adjust(left=0.2, right=0.8)
@@ -34,13 +36,16 @@ class Bar:
                  color=[GRAPH.COLOUR_DICT[term] for term in self.data['term']])
         plt.yticks(data_range, self.data['artist_name'])
 
-    def determine_display_key(self):
-        display_key_list = [GRAPH.DISPLAY_KEY_DICT[term] for term in self.terms]
-        logic_dict = {1: f"{display_key_list[0]}",
-                      2: f"{display_key_list[0]} and {display_key_list[-1]}",
+    def determine_title_suffix(self):
+        """Determines the number of terms requested and selects an appropriate string for the title suffix. The
+        string is obtained using the DISPLAY_KEY_DICT dictionary, which associates the terms in the 'length_term'
+        format with their display-ready format 'Length Term'."""
+        list_of_display_ready_terms = [GRAPH.DISPLAY_KEY_DICT[term] for term in self.terms]
+        logic_dict = {1: f"{list_of_display_ready_terms[0]}",
+                      2: f"{list_of_display_ready_terms[0]} and {list_of_display_ready_terms[-1]}",
                       3: "All Time Ranges"}
         for length in logic_dict:
-            if len(display_key_list) == length:
+            if len(list_of_display_ready_terms) == length:
                 return logic_dict[length]
 
     @staticmethod
@@ -52,10 +57,11 @@ class Bar:
     def adjust_labels(self):
         plt.xlabel('Popularity', size=GRAPH.LABEL['size'], weight=GRAPH.LABEL['weight'], font=GRAPH.LABEL['font'])
         plt.ylabel('Artist', size=GRAPH.LABEL['size'], weight=GRAPH.LABEL['weight'], font=GRAPH.LABEL['font'])
-        plt.title(f'Top Artists by Popularity [{self.determine_display_key()}]', font=GRAPH.TITLE['font'],
+        plt.title(f'Top Artists by Popularity [{self.determine_title_suffix()}]', font=GRAPH.TITLE['font'],
                   size=GRAPH.TITLE['size'], weight=GRAPH.TITLE['weight'])
 
     def add_elements(self):
+        """Adds legend and flavour text elements to the graph."""
         BarElements(*self.terms).return_vertical_lines()
         plt.legend(loc='lower right', handles=BarElements(*self.terms).construct_legend())
         FlavourText(*self.terms).return_flavour_text()
