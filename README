@@ -1,0 +1,4 @@
+1) Make a Spotify App using your own spotify account to get a Client ID and Client Secret.
+2) Replace 'string' in the corresponding entries in the example.env in a new .env file with the obtained Client ID and Client Secret.
+3) Run main.py
+
