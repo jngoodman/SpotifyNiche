@@ -14,6 +14,8 @@ NOTE: if the database already exists, i.e., the program has been run before, the
 Example outputs are including in the example_graphs folder.
 
 
+
+
 INTRUCTIONS:
 
 1) Make a Spotify App using your own spotify account to get a Client ID and Client Secret.
@@ -23,6 +25,8 @@ INTRUCTIONS:
 3) Run main.py
 
 
+
+
 UPCOMING CHANGES:
 
 (1) Unit tests.
@@ -30,6 +34,8 @@ UPCOMING CHANGES:
 (2) New authorisation flow so user does not need to make Spotify App.
 
 (3) Django interface.
+
+
 
 
 EXAMPLE IMAGE:
