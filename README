@@ -14,5 +14,6 @@ INTRUCTIONS:
 3) Run main.py
 
 UPCOMING CHANGES:
-(1) New authorisation flow so user does not need to make Spotify App.
-(2) Django interface.
+(1) Unit tests.
+(2) New authorisation flow so user does not need to make Spotify App.
+(3) Django interface.
