@@ -1,4 +1,5 @@
 from src.__init__ import construct_bar, create_db
+from os import path, remove
 
 
 def get_user_request():
@@ -16,8 +17,26 @@ def get_user_request():
     return [request for request in insert_request]
 
 
+def ask_to_update():
+    """Asks the user if they'd like to replace an existing database if one exists."""
+    if path.isfile('database.db'):
+        request_accepted = False
+        while not request_accepted:
+            ask_to_update = input("Would you like to request an updated 'database.db' from Spotify? (Y/N): ").lower()
+            if ask_to_update == 'y':
+                remove('database.db')
+                print("Old database deleted. Requesting new database...")
+                request_accepted = True
+            elif ask_to_update == 'n':
+                print("Using existing database...")
+                request_accepted = True
+            else:
+                print("Invalid response.")
+
+
 def main():
     """Runs database creation command and allows user-specified response to generate requested graph."""
+    ask_to_update()
     create_db()
     requests_dict = {
         's': 'short_term',
