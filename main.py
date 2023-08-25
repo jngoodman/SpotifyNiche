@@ -2,7 +2,6 @@ from src.__init__ import construct_bar, create_db
 
 
 def main():
-    """Accepts *args: short_term, medium_term or long_term, or any combination thereof."""
     create_db()
     requests_dict = {
         's': 'short_term',

@@ -1,6 +1,6 @@
 from src.constants.__init__ import TERMS, GRAPH, TEXT, CREATE_DATA_STRUCTURE, INSERT_VALUES_INTO_TABLE, EXTRACT_VALUES
 from src.extract_data_from_spotify.__init__ import APICall, GetArtistData
-from src.handle_display_data.__init__ import BarElements, get_direction_of_niche_text, FlavourText, Bar
+from src.handle_display_data.__init__ import BarElements, FlavourText, Bar
 from src.handle_sql_data.__init__ import Connection, create_db, retrieve_from_db
 
 

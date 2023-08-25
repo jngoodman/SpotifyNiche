@@ -7,4 +7,5 @@ def create_db():
         connection = Connection()
         connection.create_connection("database.db")
         connection.create_table()
+        connection.insert_into_table()
         connection.close_connection()

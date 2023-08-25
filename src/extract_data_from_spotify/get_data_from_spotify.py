@@ -8,10 +8,11 @@ class GetArtistData:
         self.top_artists_data: dict = {}
         self.list_of_column_values: list = []
         self.list_of_rows: list = []
+        self.api_request = APICall.request
 
     def request_top_artist_data(self):
         for term in TERMS:
-            self.top_artists_data.update({term: APICall.request.current_user_top_artists(time_range=term)['items']})
+            self.top_artists_data.update({term: self.api_request.current_user_top_artists(time_range=term)['items']})
 
     def extract_data_by_term(self):
         [names, popularities, terms] = [[], [], []]

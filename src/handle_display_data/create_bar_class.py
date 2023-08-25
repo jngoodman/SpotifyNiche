@@ -36,11 +36,12 @@ class Bar:
 
     def determine_display_key(self):
         display_key_list = [GRAPH.DISPLAY_KEY_DICT[term] for term in self.terms]
-        if len(display_key_list) == 3:
-            display_key = "All Time Ranges"
-        else:
-            display_key = f"{display_key_list[0]} and {display_key_list[1]}"
-        return display_key
+        logic_dict = {1: f"{display_key_list[0]}",
+                      2: f"{display_key_list[0]} and {display_key_list[-1]}",
+                      3: "All Time Ranges"}
+        for length in logic_dict:
+            if len(display_key_list) == length:
+                return logic_dict[length]
 
     @staticmethod
     def adjust_axes():

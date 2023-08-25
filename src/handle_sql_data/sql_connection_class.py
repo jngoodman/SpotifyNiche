@@ -30,10 +30,11 @@ class Connection:
             self.connection.commit()
             cursor.close()
 
-    def create_table(self, create_table_command: str = CREATE_DATA_STRUCTURE,
-                     insert_data_command: str = INSERT_VALUES_INTO_TABLE,
-                     rows_to_insert: list = GetArtistData().return_rows()):
+    def create_table(self, create_table_command: str = CREATE_DATA_STRUCTURE):
         self.execute_sql_command(create_table_command)
+
+    def insert_into_table(self, insert_data_command: str = INSERT_VALUES_INTO_TABLE,
+                     rows_to_insert: list = GetArtistData().return_rows()):
         self.execute_sql_command(insert_data_command, rows_to_insert, many=True)
 
     def read_sql_data(self, retrieval_command: str):
