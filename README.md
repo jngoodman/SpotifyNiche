@@ -9,9 +9,9 @@ The program will then prompt the user to input requested time ranges 's, m or l'
 The program will then produce a graph containing the artist's names and their popularities for the requested time ranges, to tell the user whether or not they have become more niche in their music taste.
 
 
-NOTE: if the database already exists, i.e., the program has been run before, then the user will be prompted as to whether they would like to use the local database or update it using the API.
+NOTE: If the database already exists, i.e., the program has been run before, then the user will be prompted as to whether they would like to use the local database or update it using the API.
 
-Example outputs are including in the example_graphs folder.
+Example outputs are included in the example_graphs folder.
 
 
 
