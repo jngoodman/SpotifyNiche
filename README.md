@@ -1,4 +1,4 @@
-DESCRIPTION:
+**DESCRIPTION:**
 
 This program will make an API request to a Spotify App (that the user must currently generate) to obtain the user's top artists and their popularities over three distinct time ranges.
 
@@ -16,7 +16,7 @@ Example outputs are including in the example_graphs folder.
 
 
 
-INTRUCTIONS:
+**INTRUCTIONS:**
 
 1) Make a Spotify App using your own spotify account to get a Client ID and Client Secret.
 
@@ -27,7 +27,7 @@ INTRUCTIONS:
 
 
 
-UPCOMING CHANGES:
+**UPCOMING CHANGES:**
 
 (1) Unit tests.
 
@@ -38,5 +38,5 @@ UPCOMING CHANGES:
 
 
 
-EXAMPLE IMAGE:
+**EXAMPLE IMAGE:**
 ![ExampleAllTerms](https://github.com/jngoodman/SpotifyNiche/assets/140734696/ecc3a0a4-74eb-4602-a5b0-7fad9b8d6afd)
