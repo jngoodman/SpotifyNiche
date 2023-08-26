@@ -17,7 +17,7 @@ Example outputs are included in the example_graphs folder.
 
 2) Make a Spotify App using your own spotify account to get a Client ID and Client Secret.
 
-3) Replace 'string' in the corresponding entries in the example.env in a new .env file with the obtained Client ID and Client Secret. Ensure REDIRECT_URI in the .env is equal to the REDIRECT.URI in your Spotify App.
+3) Replace 'string' in the corresponding entries in the example.env in a new .env file with the obtained Client ID and Client Secret. Ensure REDIRECT_URI in the .env is an entry in the Rediect URIs field in your Spotify App.
   
 4) In your command prompt, navigate to the SpotifyNiche folder, and then type 'pipenv shell'.
 
