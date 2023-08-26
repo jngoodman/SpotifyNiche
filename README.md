@@ -24,3 +24,17 @@ Example outputs are included in the example_graphs folder.
 
 **EXAMPLE IMAGE:**
 ![ExampleAllTerms](https://github.com/jngoodman/SpotifyNiche/assets/140734696/ecc3a0a4-74eb-4602-a5b0-7fad9b8d6afd)
+
+
+
+
+**MAKING A SPOTIFY APP**
+To make a Spotify App, navigate to https://developer.spotify.com/dashboard/, sign in, and click 'Create App'.
+
+Once you've made the App, you need to recover the Client ID, Client Secret and Redirect URI. This is since you need to enter these in to their corresponding fields in file named '.env' (see example.env). 
+
+To find these, click 'Settings' in the top right of your app, and under Basic Information you'll have something similar to the image below. You can find the Client ID, Client Secret and Redirect URIs at the positions marked with red arrows.
+
+NOTE: you will need to enter the Redirect URI yourself first. The program will not run unless the same Redirect URI is in both your .env file and saved in your web-based Spotify App.
+
+![image](https://github.com/jngoodman/SpotifyNiche/assets/140734696/0c9bc23b-0cf9-4661-99c0-9df3990358cd)
