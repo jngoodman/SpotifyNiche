@@ -29,6 +29,7 @@ Example outputs are included in the example_graphs folder.
 
 
 **MAKING A SPOTIFY APP**
+
 To make a Spotify App, navigate to https://developer.spotify.com/dashboard/, sign in, and click 'Create App'.
 
 Once you've made the App, you need to recover the Client ID, Client Secret and Redirect URI. This is since you need to enter these in to their corresponding fields in file named '.env' (see example.env). 
