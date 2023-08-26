@@ -1,12 +1,11 @@
-from src.handle_sql_data.sql_connection_class import Connection
-from os import path
+from src.handle_sql_data.connection_class import Connection
+from src.constants.__init__ import SQL_DATA
 
 
-def create_db():
+def create_db(rows):
     """Creates SQL database and inserts processed Spotify data from GetArtistsData if database does not exist."""
-    if not path.isfile("database.db"):
-        connection = Connection()
-        connection.create_connection("database.db")
-        connection.create_table()
-        connection.insert_into_table()
-        connection.close_connection()
+    connection = Connection()
+    connection.create_connection(SQL_DATA)
+    connection.create_table()
+    connection.insert_into_table(rows_to_insert=rows)
+    connection.close_connection()

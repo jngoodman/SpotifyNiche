@@ -1,7 +1,6 @@
 from sqlite3 import connect
 from pandas import read_sql_query
 from src.constants.__init__ import CREATE_DATA_STRUCTURE, INSERT_VALUES_INTO_TABLE
-from src.extract_data_from_spotify.__init__ import GetArtistData
 
 
 class Connection:
@@ -39,7 +38,7 @@ class Connection:
         self.execute_sql_command(create_table_command)
 
     def insert_into_table(self, insert_data_command: str = INSERT_VALUES_INTO_TABLE,
-                     rows_to_insert: list = GetArtistData().return_rows()):
+                          rows_to_insert: list = None):
         """Inserts data into table. Default command is src.constants.INSERT_VALUES_INTO_TABLE. Default rows to
         insert obtained by processing using GetArtistData class."""
         self.execute_sql_command(insert_data_command, rows_to_insert, many=True)

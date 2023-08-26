@@ -13,7 +13,7 @@ class FlavourText:
                                           in retrieve_from_db(EXTRACT_VALUES.LEAST))
 
     def _get_direction_of_niche_text(self):
-        """Produces flavour text based on the direction the user's popularity is going from the longest to shortest
+        """Produces flavour text based on the direction the user's popularity is going from the longest to the shortest
         time range in [*args]."""
         term_indices = []
         for term in self.terms:

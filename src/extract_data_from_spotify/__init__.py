@@ -1,2 +1,0 @@
-from src.extract_data_from_spotify.authentication import AUTH
-from src.extract_data_from_spotify.get_data_from_spotify import GetArtistData
