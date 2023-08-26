@@ -13,11 +13,15 @@ Example outputs are included in the example_graphs folder.
 
 **INTRUCTIONS:**
 
-1) Make a Spotify App using your own spotify account to get a Client ID and Client Secret.
+1) Install Python3 (https://www.python.org/) and Pipenv (https://pipenv.pypa.io/en/latest/) to your computer.
 
-2) Replace 'string' in the corresponding entries in the example.env in a new .env file with the obtained Client ID and Client Secret. Ensure REDIRECT_URI in the .env is equal to the REDIRECT.URI in your Spotify App.
+2) Make a Spotify App using your own spotify account to get a Client ID and Client Secret.
+
+3) Replace 'string' in the corresponding entries in the example.env in a new .env file with the obtained Client ID and Client Secret. Ensure REDIRECT_URI in the .env is equal to the REDIRECT.URI in your Spotify App.
   
-3) Run main.py
+4) In your command prompt, navigate to the SpotifyNiche folder, and then type 'pipenv shell'.
+
+5) Type 'py main.py'.
 
 
 
