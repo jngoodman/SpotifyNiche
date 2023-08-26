@@ -1,4 +1,4 @@
-from src.extract_data_from_spotify.authentication import APICall
+from src.extract_data_from_spotify.authentication import AUTH
 from src.constants.__init__ import TERMS
 
 
@@ -8,12 +8,12 @@ class GetArtistData:
         self.top_artists_data: dict = {}
         self.list_of_column_values: list = []
         self.list_of_rows: list = []
-        self.api_request = APICall.request
+        self.raw_data = AUTH.RAW_DATA
 
     def request_top_artist_data(self):
         """Makes API request for current user's top artists and appends this raw data to a dictionary."""
         for term in TERMS:
-            self.top_artists_data.update({term: self.api_request.current_user_top_artists(time_range=term)['items']})
+            self.top_artists_data.update({term: self.raw_data.current_user_top_artists(time_range=term)['items']})
 
     def extract_data_by_term(self):
         """Processes raw spotify data contained in a dictionary to retrieve names, popularities and terms."""

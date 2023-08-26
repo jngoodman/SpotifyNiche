@@ -1,19 +1,19 @@
-from spotipy import Spotify, oauth2, SpotifyOAuth
+from spotipy import Spotify, SpotifyOAuth
 from dotenv import load_dotenv
 from os import getenv
 
 load_dotenv()
 
 
-class APICall:
+class AUTH:
     CLIENT_ID = getenv('CLIENT_ID')
     CLIENT_SECRET = getenv('CLIENT_SECRET')
-    REDIRECT_URL = getenv('REDIRECT_URL')
-    request = Spotify(
-        auth_manager=SpotifyOAuth(
-            client_id=CLIENT_ID,
-            client_secret=CLIENT_SECRET,
-            redirect_uri=REDIRECT_URL,
-            scope='user-top-read'
-        )
+    REDIRECT_URI = getenv('REDIRECT_URI')
+    REQUEST = SpotifyOAuth(
+        client_id=CLIENT_ID,
+        client_secret=CLIENT_SECRET,
+        redirect_uri=REDIRECT_URI,
+        scope='user-top-read'
     )
+    RAW_DATA = Spotify(auth_manager=REQUEST)
+
