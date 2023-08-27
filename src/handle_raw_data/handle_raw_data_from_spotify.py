@@ -54,7 +54,7 @@ class ConvertRawData:
             self.list_of_rows.append([names[index], popularities[index], terms[index]])
 
     def return_rows(self):
-        """Performs the aggregate data creation function and returns the list of rows for processing via SQLite."""
+        """Performs the extract data by term function and returns the list of rows for processing via SQLite."""
         self.extract_data_by_term()
         self.create_rows()
         return self.list_of_rows
