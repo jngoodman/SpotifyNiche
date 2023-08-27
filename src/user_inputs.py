@@ -38,7 +38,7 @@ def get_sml_request():
     insert_request: str = ''
     request_accepted = False
     while not request_accepted:
-        insert_request = input("What would you like to insert? Any combination of (s/m/l): ").lower()
+        insert_request = input("What would you like to view? Any combination of (s/m/l): ").lower()
         fail_list = []
         for letter in insert_request:
             if letter not in 'sml':

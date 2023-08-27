@@ -49,9 +49,9 @@ class ConvertRawData:
 
     def create_rows(self):
         """Creates a list of rows that can be passed into a database using SQLite."""
-        [name, popularity, term] = self.list_of_column_values
-        for index in range(len(name)):
-            self.list_of_rows.append([name[index], popularity[index], term[index]])
+        [names, popularities, terms] = self.list_of_column_values
+        for index in range(len(names)):
+            self.list_of_rows.append([names[index], popularities[index], terms[index]])
 
     def return_rows(self):
         """Performs the aggregate data creation function and returns the list of rows for processing via SQLite."""
