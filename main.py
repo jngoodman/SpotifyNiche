@@ -1,4 +1,4 @@
-from src.__init__ import construct_bar, get_sml_request, check_for_new_database
+from src.__init__ import construct_bar, get_sml_request, check_for_new_database, get_save_show_request
 
 
 def main():
@@ -14,7 +14,8 @@ def main():
     for key, value in requests_dict.items():
         if key in request_input_list:
             request_output_list.append(value)
-    construct_bar(*request_output_list)
+    bar = construct_bar(*request_output_list)
+    get_save_show_request(bar)
 
 
 if __name__ == "__main__":

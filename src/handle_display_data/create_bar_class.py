@@ -69,3 +69,13 @@ class Bar:
     @staticmethod
     def show_bar():
         plt.show()
+
+    def save_bar(self):
+        """Saves the file with a dynamic file name."""
+        list_of_suffixes = [term for term in self.terms]
+        logic_dict = {1: f"{list_of_suffixes[0]}",
+                      2: f"{list_of_suffixes[0]}_and_{list_of_suffixes[-1]}",
+                      3: "all_time_ranges"}
+        for length in logic_dict:
+            if len(list_of_suffixes) == length:
+                return plt.savefig(f'spotify_niche_[{logic_dict[length]}].png')

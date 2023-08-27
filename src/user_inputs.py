@@ -22,7 +22,7 @@ def check_for_new_database():
                 remove(SQL_DATA)
                 print("Old database deleted. Requesting new database...")
                 get_new_database()
-                request_accepted=True
+                request_accepted = True
             elif get_update == 'n':
                 print("Using existing database...")
                 request_accepted = True
@@ -35,14 +35,34 @@ def check_for_new_database():
 
 def get_sml_request():
     """Gets user request for what terms they would like to insert. Accepts only a combination of 'sml'."""
-    insert_request: str = ''
+    term_request: str = ''
     request_accepted = False
     while not request_accepted:
-        insert_request = input("What would you like to view? Any combination of (s/m/l): ").lower()
+        term_request = input("What terms would you like to include? Any combination of (s/m/l): ").lower()
         fail_list = []
-        for letter in insert_request:
+        for letter in term_request:
             if letter not in 'sml':
                 fail_list.append(letter)
             if not fail_list:
                 request_accepted = True
-    return [request for request in insert_request]
+    return [request for request in term_request]
+
+
+def get_save_show_request(bar):
+    save_show_request: str = ''
+    request_accepted = False
+    while not request_accepted:
+        save_show_request = input("Graph produced. Would you like to save, show, or both? (save/show/both): ").lower()
+        if save_show_request in ['save', 'show', 'both']:
+            request_accepted = True
+        else:
+            print("Invalid input.")
+    logic_dict = {
+        'save': [bar.save_bar],
+        'show': [bar.show_bar],
+        'both': [bar.save_bar, bar.show_bar]
+    }
+    for request, function_list in logic_dict.items():
+        if save_show_request == request:
+            [function() for function in function_list]
+
