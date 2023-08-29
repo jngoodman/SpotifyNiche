@@ -3,6 +3,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[scripts]
+start="py main.py"
+test="py src/tests.py"
+
 [packages]
 spotipy = "*"
 requests = "*"
