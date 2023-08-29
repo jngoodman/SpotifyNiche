@@ -1,6 +1,7 @@
 from sqlite3 import connect
 from pandas import read_sql_query
-from ..constants import CREATE_DATA_STRUCTURE, INSERT_VALUES_INTO_TABLE
+from ..constants import INSERT_VALUES_INTO_TABLE
+from .constants import CREATE_TOP_ARTIST_POPULARITIES_TABLE
 
 
 class Connection:
@@ -32,8 +33,10 @@ class Connection:
             self.connection.commit()
             cursor.close()
 
-    def create_table(self, create_table_command: str = CREATE_DATA_STRUCTURE):
-        """Creates table using create_table_command. Default command is src.constants.CREATE_DATA_STRUCTURE."""
+    def create_table(
+        self, create_table_command: str = CREATE_TOP_ARTIST_POPULARITIES_TABLE
+    ):
+        """Creates table using create_table_command. Default command is src.constants.CREATE_TOP_ARTIST_POPULARITIES_TABLE."""
         self.execute_sql_command(create_table_command)
 
     def insert_into_table(

@@ -2,7 +2,6 @@ from .constants import (
     TERMS,
     GRAPH,
     TEXT,
-    CREATE_DATA_STRUCTURE,
     INSERT_VALUES_INTO_TABLE,
     EXTRACT_VALUES,
 )

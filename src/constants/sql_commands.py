@@ -1,13 +1,3 @@
-CREATE_DATA_STRUCTURE = """
-CREATE TABLE 
-top_artist_popularities (
-id INTEGER PRIMARY KEY,
-artist_name TEXT NOT NULL,
-popularity INTEGER,
-term TEXT NOT NULL
-);
-"""
-
 INSERT_VALUES_INTO_TABLE = """
 INSERT INTO 
 top_artist_popularities (artist_name, popularity, term)
