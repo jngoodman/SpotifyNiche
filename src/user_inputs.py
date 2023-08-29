@@ -1,7 +1,7 @@
 from os import path, remove
-from handle_raw_data import GetRawData, ConvertRawData
-from constants import SQL_DATA
-from handle_sql_data import create_db
+from .handle_raw_data import GetRawData, ConvertRawData
+from .constants import SQL_DATA
+from .database import create_db
 
 
 def get_new_database():

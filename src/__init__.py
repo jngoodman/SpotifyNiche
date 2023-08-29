@@ -1,4 +1,4 @@
-from constants import (
+from .constants import (
     TERMS,
     GRAPH,
     TEXT,
@@ -6,10 +6,10 @@ from constants import (
     INSERT_VALUES_INTO_TABLE,
     EXTRACT_VALUES,
 )
-from handle_raw_data import GetRawData, ConvertRawData
-from handle_display_data import BarElements, FlavourText, Bar
-from handle_sql_data import Connection, create_db, retrieve_from_db
-from user_inputs import (
+from .handle_raw_data import GetRawData, ConvertRawData
+from .graph import BarElements, FlavourText, Bar
+from .database import Connection, create_db, retrieve_from_db
+from .user_inputs import (
     get_sml_request,
     check_for_new_database,
     get_save_show_request,

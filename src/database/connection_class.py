@@ -1,6 +1,6 @@
 from sqlite3 import connect
 from pandas import read_sql_query
-from constants import CREATE_DATA_STRUCTURE, INSERT_VALUES_INTO_TABLE
+from ..constants import CREATE_DATA_STRUCTURE, INSERT_VALUES_INTO_TABLE
 
 
 class Connection:

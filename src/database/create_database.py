@@ -1,5 +1,5 @@
-from handle_sql_data.connection_class import Connection
-from constants import SQL_DATA
+from .connection_class import Connection
+from ..constants import SQL_DATA
 
 
 def create_db(rows):
