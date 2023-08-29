@@ -1,4 +1,4 @@
-from src.constants.__init__ import (
+from constants import (
     TERMS,
     GRAPH,
     TEXT,
@@ -6,10 +6,10 @@ from src.constants.__init__ import (
     INSERT_VALUES_INTO_TABLE,
     EXTRACT_VALUES,
 )
-from src.handle_raw_data.__init__ import GetRawData, ConvertRawData
-from src.handle_display_data.__init__ import BarElements, FlavourText, Bar
-from src.handle_sql_data.__init__ import Connection, create_db, retrieve_from_db
-from src.user_inputs import (
+from handle_raw_data import GetRawData, ConvertRawData
+from handle_display_data import BarElements, FlavourText, Bar
+from handle_sql_data import Connection, create_db, retrieve_from_db
+from user_inputs import (
     get_sml_request,
     check_for_new_database,
     get_save_show_request,

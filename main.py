@@ -1,4 +1,4 @@
-from src.__init__ import (
+from . import (
     construct_bar,
     get_sml_request,
     check_for_new_database,

@@ -1,4 +1,4 @@
-from src.__init__ import TERMS, CREATE_DATA_STRUCTURE
+from constants import TERMS, CREATE_DATA_STRUCTURE
 from dotenv import load_dotenv
 from unittest import TestCase, main
 from os import getenv, path, stat, remove

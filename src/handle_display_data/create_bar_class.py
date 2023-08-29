@@ -1,8 +1,8 @@
 from matplotlib import pyplot as plt
-from src.constants.__init__ import GRAPH, EXTRACT_VALUES
-from src.handle_sql_data.__init__ import retrieve_from_db
-from src.handle_display_data.flavour_text import FlavourText
-from src.handle_display_data.graph_elements import BarElements
+from constants import GRAPH, EXTRACT_VALUES
+from handle_sql_data import retrieve_from_db
+from handle_display_data.flavour_text import FlavourText
+from handle_display_data.graph_elements import BarElements
 
 
 class Bar:

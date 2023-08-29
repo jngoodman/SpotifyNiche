@@ -1,6 +1,6 @@
 from matplotlib import patches, pyplot as plt
-from src.constants.__init__ import GRAPH, EXTRACT_VALUES
-from src.handle_sql_data.__init__ import retrieve_from_db
+from constants import GRAPH, EXTRACT_VALUES
+from handle_sql_data import retrieve_from_db
 
 
 class BarElements:

@@ -1,3 +1,3 @@
-from src.handle_display_data.graph_elements import BarElements
-from src.handle_display_data.flavour_text import FlavourText
-from src.handle_display_data.create_bar_class import Bar
+from handle_display_data.graph_elements import BarElements
+from handle_display_data.flavour_text import FlavourText
+from handle_display_data.create_bar_class import Bar
