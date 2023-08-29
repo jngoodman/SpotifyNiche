@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 from ..constants import EXTRACT_VALUES
-from .graph_constants import GRAPH
+from .constants import GRAPH
 from ..database import retrieve_from_db
 from .flavour_text import FlavourText
 from .graph_elements import BarElements
