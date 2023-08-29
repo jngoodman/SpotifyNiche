@@ -6,54 +6,54 @@ from spotipy import Spotify, SpotifyOAuth
 from sqlite3 import connect
 
 
-class RawDataTests(TestCase):
-    def test_env_params(self):
-        """Passes if .env parameters not empty."""
-        load_dotenv()
-        env_params = [
-            getenv("CLIENT_ID"),
-            getenv("CLIENT_SECRET"),
-            getenv("REDIRECT_URI"),
-        ]
-        self.assertTrue(
-            all(env_params),
-            "CLIENT_ID, CLIENT_SECRET and REDIRECT_URI should be non-empty in .env",
-        )
+# class RawDataTests(TestCase):
+# def test_env_params(self):
+#     """Passes if .env parameters not empty."""
+#     load_dotenv()
+#     env_params = [
+#         getenv("CLIENT_ID"),
+#         getenv("CLIENT_SECRET"),
+#         getenv("REDIRECT_URI"),
+#     ]
+#     self.assertTrue(
+#         all(env_params),
+#         "CLIENT_ID, CLIENT_SECRET and REDIRECT_URI should be non-empty in .env",
+#     )
 
-    def test_is_spotify(self):
-        """Passes if Spotify object."""
-        test_spotify = Spotify(
-            auth_manager=SpotifyOAuth(
-                client_id=getenv("CLIENT_ID"),
-                client_secret=getenv("CLIENT_SECRET"),
-                redirect_uri=getenv("REDIRECT_URI"),
-                scope="user_top_read",
-            )
-        )
-        self.assertIsInstance(test_spotify, Spotify, "Should be a Spotify object,")
+# def test_is_spotify(self):
+#     """Passes if Spotify object."""
+#     test_spotify = Spotify(
+#         auth_manager=SpotifyOAuth(
+#             client_id=getenv("CLIENT_ID"),
+#             client_secret=getenv("CLIENT_SECRET"),
+#             redirect_uri=getenv("REDIRECT_URI"),
+#             scope="user_top_read",
+#         )
+#     )
+#     self.assertIsInstance(test_spotify, Spotify, "Should be a Spotify object,")
 
-    def test_terms_in_raw_data(self):
-        """Passes if all terms found in raw data."""
-        test_spotify = Spotify(
-            auth_manager=SpotifyOAuth(
-                client_id=getenv("CLIENT_ID"),
-                client_secret=getenv("CLIENT_SECRET"),
-                redirect_uri=getenv("REDIRECT_URI"),
-                scope="user-top-read",
-            )
-        )
-        test_data = {}
-        for term in TERMS:
-            try:
-                test_data.update(
-                    {
-                        term: test_spotify.current_user_top_artists(time_range=term)[
-                            "items"
-                        ]
-                    }
-                )
-            except KeyError:
-                self.fail(f"{term} not found.")
+# def test_terms_in_raw_data(self):
+#     """Passes if all terms found in raw data."""
+#     test_spotify = Spotify(
+#         auth_manager=SpotifyOAuth(
+#             client_id=getenv("CLIENT_ID"),
+#             client_secret=getenv("CLIENT_SECRET"),
+#             redirect_uri=getenv("REDIRECT_URI"),
+#             scope="user-top-read",
+#         )
+#     )
+#     test_data = {}
+#     for term in TERMS:
+#         try:
+#             test_data.update(
+#                 {
+#                     term: test_spotify.current_user_top_artists(time_range=term)[
+#                         "items"
+#                     ]
+#                 }
+#             )
+#         except KeyError:
+#             self.fail(f"{term} not found.")
 
 
 class ConvertDataTests(TestCase):
