@@ -7,31 +7,31 @@ load_dotenv()
 
 
 class GetRawData:
-
     def __init__(self):
         self.spotify = None
         self.raw_data: dict = {}
 
     def make_request(self):
-        CLIENT_ID = getenv('CLIENT_ID')
-        CLIENT_SECRET = getenv('CLIENT_SECRET')
-        REDIRECT_URI = getenv('REDIRECT_URI')
+        CLIENT_ID = getenv("CLIENT_ID")
+        CLIENT_SECRET = getenv("CLIENT_SECRET")
+        REDIRECT_URI = getenv("REDIRECT_URI")
         REQUEST = SpotifyOAuth(
             client_id=CLIENT_ID,
             client_secret=CLIENT_SECRET,
             redirect_uri=REDIRECT_URI,
-            scope='user-top-read'
+            scope="user-top-read",
         )
         self.spotify = Spotify(auth_manager=REQUEST)
 
     def get_raw_data_from_request(self):
         for term in TERMS:
-            raw_data_for_term = self.spotify.current_user_top_artists(time_range=term)['items']
+            raw_data_for_term = self.spotify.current_user_top_artists(time_range=term)[
+                "items"
+            ]
             self.raw_data.update({term: raw_data_for_term})
 
 
 class ConvertRawData:
-
     def __init__(self, raw_data):
         self.list_of_column_values: list = []
         self.list_of_rows: list = []
@@ -42,8 +42,8 @@ class ConvertRawData:
         [names, popularities, terms] = [[], [], []]
         for term in TERMS:
             for artist_data in self.raw_data[term]:
-                names.append(artist_data['name'])
-                popularities.append(artist_data['popularity'])
+                names.append(artist_data["name"])
+                popularities.append(artist_data["popularity"])
                 terms.append(term)
         self.list_of_column_values = [names, popularities, terms]
 

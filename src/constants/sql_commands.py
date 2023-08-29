@@ -19,7 +19,7 @@ class EXTRACT_VALUES:
     VALUES_INTRO = "SELECT * FROM top_artist_popularities WHERE"
 
     VALUES_OUTRO = "ORDER BY popularity;"
-    
+
     AVG = """SELECT term, AVG(popularity)
     FROM top_artist_popularities
     GROUP BY term;"""
@@ -33,7 +33,7 @@ class EXTRACT_VALUES:
     GROUP BY term;"""
 
     EXTRACTION_KEYS = {
-        'short_term': "term IS 'short_term'",
-        'medium_term': "term IS 'medium_term'",
-        'long_term': "term IS 'long_term'"
+        "short_term": "term IS 'short_term'",
+        "medium_term": "term IS 'medium_term'",
+        "long_term": "term IS 'long_term'",
     }

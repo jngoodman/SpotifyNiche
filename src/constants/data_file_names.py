@@ -1,1 +1,1 @@
-SQL_DATA = 'database.db'
+SQL_DATA = "database.db"

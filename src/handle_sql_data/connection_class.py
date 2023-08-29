@@ -4,7 +4,6 @@ from src.constants.__init__ import CREATE_DATA_STRUCTURE, INSERT_VALUES_INTO_TAB
 
 
 class Connection:
-
     def __init__(self):
         self.connection = None
         self.data_in_python = None
@@ -37,8 +36,11 @@ class Connection:
         """Creates table using create_table_command. Default command is src.constants.CREATE_DATA_STRUCTURE."""
         self.execute_sql_command(create_table_command)
 
-    def insert_into_table(self, insert_data_command: str = INSERT_VALUES_INTO_TABLE,
-                          rows_to_insert: list = None):
+    def insert_into_table(
+        self,
+        insert_data_command: str = INSERT_VALUES_INTO_TABLE,
+        rows_to_insert: list = None,
+    ):
         """Inserts data into table. Default command is src.constants.INSERT_VALUES_INTO_TABLE. Default rows to
         insert obtained by processing using GetArtistData class."""
         self.execute_sql_command(insert_data_command, rows_to_insert, many=True)
