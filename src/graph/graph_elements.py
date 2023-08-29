@@ -1,5 +1,6 @@
 from matplotlib import patches, pyplot as plt
-from ..constants import GRAPH, EXTRACT_VALUES
+from ..constants import EXTRACT_VALUES
+from .graph_constants import GRAPH
 from ..database import retrieve_from_db
 
 

@@ -1,7 +1,7 @@
 from spotipy import Spotify, SpotifyOAuth
 from dotenv import load_dotenv
 from os import getenv
-from src.constants import TERMS
+from ..constants import TERMS
 
 load_dotenv()
 

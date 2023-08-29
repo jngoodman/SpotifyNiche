@@ -1,10 +1,3 @@
-from .constants import (
-    TERMS,
-    GRAPH,
-    TEXT,
-    INSERT_VALUES_INTO_TABLE,
-    EXTRACT_VALUES,
-)
 from .handle_raw_data import GetRawData, ConvertRawData
 from .graph import BarElements, FlavourText, Bar
 from .database import Connection, create_db, retrieve_from_db

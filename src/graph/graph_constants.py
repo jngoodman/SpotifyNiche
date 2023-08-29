@@ -1,7 +1,5 @@
 from numpy import arange
 
-TERMS = ["short_term", "medium_term", "long_term"]
-
 
 class GRAPH:
     TITLE = {"size": 24, "weight": "bold", "font": "Arial"}

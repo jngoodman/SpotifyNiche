@@ -1,4 +1,5 @@
-from ..constants import GRAPH, TEXT, EXTRACT_VALUES, TERMS
+from ..constants import EXTRACT_VALUES, TERMS
+from .graph_constants import GRAPH, TEXT
 from ..database import retrieve_from_db
 from matplotlib import pyplot as plt
 
