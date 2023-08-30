@@ -55,3 +55,10 @@ class TEXT:
     POPULARITY = "Average popularity:"
     DIRECTION_INTRO = "The average popularity of your top artists " \
                       "\nhas"
+
+
+SQL_EXTRACTION_KEYS = {
+        'short_term': "term IS 'short_term'",
+        'medium_term': "term IS 'medium_term'",
+        'long_term': "term IS 'long_term'"
+    }

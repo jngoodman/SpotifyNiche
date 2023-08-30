@@ -1,5 +1,5 @@
 from src.handle_sql_data.connection_class import Connection
-from src.constants.__init__ import SQL_DATA
+from src.constants import SQL_DATA
 
 
 def retrieve_from_db(retrieval_command, pandas=False):

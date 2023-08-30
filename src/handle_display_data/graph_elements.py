@@ -1,12 +1,13 @@
 from matplotlib import patches, pyplot as plt
-from src.constants import GRAPH, EXTRACT_VALUES
+from src.constants import GRAPH
 from src.handle_sql_data import retrieve_from_db
+from src.handle_sql_data.sql_commands import scripts_dictionary
 
 
 class BarElements:
     def __init__(self, *args: str):
         self.terms: list = [*args]
-        self.means: dict = dict((term, mean) for term, mean in retrieve_from_db(EXTRACT_VALUES.AVG))
+        self.means: dict = dict((term, mean) for term, mean in retrieve_from_db(scripts_dictionary['get_averages']))
 
     def construct_legend(self):
         """Composes a legend from automatically-generated legends (vertical lines) and a manually generated legend

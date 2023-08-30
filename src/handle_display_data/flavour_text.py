@@ -1,16 +1,17 @@
-from src.constants import GRAPH, TEXT, EXTRACT_VALUES, TERMS
+from src.constants import GRAPH, TEXT, TERMS
 from src.handle_sql_data import retrieve_from_db
+from src.handle_sql_data.sql_commands import scripts_dictionary
 from matplotlib import pyplot as plt
 
 
 class FlavourText:
     def __init__(self, *args):
         self.terms: list = [*args]
-        self.means: dict = dict((term, mean) for term, mean in retrieve_from_db(EXTRACT_VALUES.AVG))
+        self.means: dict = dict((term, mean) for term, mean in retrieve_from_db(scripts_dictionary['get_averages']))
         self.most_popular_artists: dict = dict((term, artist) for term, artist, popularity
-                                         in retrieve_from_db(EXTRACT_VALUES.MOST))
+                                         in retrieve_from_db(scripts_dictionary['get_most']))
         self.least_popular_artists: dict = dict((term, artist) for term, artist, popularity
-                                          in retrieve_from_db(EXTRACT_VALUES.LEAST))
+                                          in retrieve_from_db(scripts_dictionary['get_least']))
 
     def _get_direction_of_niche_text(self):
         """Produces flavour text based on the direction the user's popularity is going from the longest to the shortest

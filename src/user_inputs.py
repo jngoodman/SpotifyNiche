@@ -34,7 +34,8 @@ def check_for_new_database():
 
 
 def get_sml_request():
-    """Gets user request for what terms they would like to insert. Accepts only a combination of 'sml'."""
+    """Gets user request for what terms they would like to insert. Accepts only a combination of 'sml'. User inputs
+    are sanitised so that only combinations of s, m and l characters are accepted. This is to prevent SQL injection."""
     term_request: str = ''
     request_accepted = False
     while not request_accepted:
@@ -43,9 +44,25 @@ def get_sml_request():
         for letter in term_request:
             if letter not in 'sml':
                 fail_list.append(letter)
-            if not fail_list:
-                request_accepted = True
+        if not fail_list:
+            request_accepted = True
     return [request for request in term_request]
+
+
+def convert_user_inputs():
+    """Takes the sanitised inputs from get_sml_requests and converts them into the associated values readable by
+    the rest of the code."""
+    request_input_list = get_sml_request()
+    requests_dict = {
+        's': 'short_term',
+        'm': 'medium_term',
+        'l': 'long_term'
+    }
+    request_output_list = []
+    for key, value in requests_dict.items():
+        if key in request_input_list:
+            request_output_list.append(value)
+    return request_output_list
 
 
 def get_save_show_request(bar):
@@ -65,4 +82,3 @@ def get_save_show_request(bar):
     for request, function_list in logic_dict.items():
         if save_show_request == request:
             [function() for function in function_list]
-

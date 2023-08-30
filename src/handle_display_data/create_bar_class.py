@@ -1,8 +1,9 @@
 from matplotlib import pyplot as plt
-from src.constants import GRAPH, EXTRACT_VALUES
+from src.constants import GRAPH
 from src.handle_sql_data import retrieve_from_db
 from src.handle_display_data.flavour_text import FlavourText
 from src.handle_display_data.graph_elements import BarElements
+from src.handle_sql_data.sql_commands import extraction_intro, extraction_outro, extraction_keys
 
 
 class Bar:
@@ -14,16 +15,17 @@ class Bar:
 
     def extract_data(self):
         """Creates an ad-hoc SQLite command to allow data from the database to be recovered in a pandas format
-        based on the terms requested in *args"""
+        based on the terms requested in *args. This differs from the other sql commands since the command is now
+        stored as a .sql but as a .py file containing strings for the intro, dynamic middle, and outro."""
         extraction_list = []
         counter = 1
         for term in self.terms:
-            extraction_list.append(f"term IS '{term}'")
+            extraction_list.append(extraction_keys[term])
             if counter < len(self.terms):
                 extraction_list.append("OR")
             counter += 1
         extraction_string = ' '.join(extraction_list)
-        sql_command = f"""{EXTRACT_VALUES.VALUES_INTRO} {extraction_string} {EXTRACT_VALUES.VALUES_OUTRO}"""
+        sql_command = f"""{extraction_intro} {extraction_string} {extraction_outro}"""
         self.data = retrieve_from_db(sql_command, pandas=True)
 
     def construct_bars(self):
@@ -51,14 +53,26 @@ class Bar:
     @staticmethod
     def adjust_axes():
         plt.xlim(0, 100)
-        plt.xticks(fontsize=GRAPH.TICK['size'], font=GRAPH.TICK['font'], weight=GRAPH.TICK['weight'])
-        plt.yticks(fontsize=GRAPH.TICK['size'], font=GRAPH.TICK['font'], weight=GRAPH.TICK['weight'])
+        plt.xticks(fontsize=GRAPH.TICK['size'],
+                   font=GRAPH.TICK['font'],
+                   weight=GRAPH.TICK['weight'])
+        plt.yticks(fontsize=GRAPH.TICK['size'],
+                   font=GRAPH.TICK['font'],
+                   weight=GRAPH.TICK['weight'])
 
     def adjust_labels(self):
-        plt.xlabel('Popularity', size=GRAPH.LABEL['size'], weight=GRAPH.LABEL['weight'], font=GRAPH.LABEL['font'])
-        plt.ylabel('Artist', size=GRAPH.LABEL['size'], weight=GRAPH.LABEL['weight'], font=GRAPH.LABEL['font'])
-        plt.title(f'Top Artists by Popularity [{self.determine_title_suffix()}]', font=GRAPH.TITLE['font'],
-                  size=GRAPH.TITLE['size'], weight=GRAPH.TITLE['weight'])
+        plt.xlabel('Popularity',
+                   size=GRAPH.LABEL['size'],
+                   weight=GRAPH.LABEL['weight'],
+                   font=GRAPH.LABEL['font'])
+        plt.ylabel('Artist',
+                   size=GRAPH.LABEL['size'],
+                   weight=GRAPH.LABEL['weight'],
+                   font=GRAPH.LABEL['font'])
+        plt.title(f'Top Artists by Popularity [{self.determine_title_suffix()}]',
+                  font=GRAPH.TITLE['font'],
+                  size=GRAPH.TITLE['size'],
+                  weight=GRAPH.TITLE['weight'])
 
     def add_elements(self):
         """Adds legend and flavour text elements to the graph."""

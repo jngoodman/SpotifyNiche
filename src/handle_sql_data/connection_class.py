@@ -1,6 +1,6 @@
 from sqlite3 import connect
 from pandas import read_sql_query
-from src.constants.__init__ import CREATE_DATA_STRUCTURE, INSERT_VALUES_INTO_TABLE
+from src.handle_sql_data.sql_commands import scripts_dictionary
 
 
 class Connection:
@@ -33,11 +33,11 @@ class Connection:
             self.connection.commit()
             cursor.close()
 
-    def create_table(self, create_table_command: str = CREATE_DATA_STRUCTURE):
+    def create_table(self, create_table_command: str = scripts_dictionary['create_table']):
         """Creates table using create_table_command. Default command is src.constants.CREATE_DATA_STRUCTURE."""
         self.execute_sql_command(create_table_command)
 
-    def insert_into_table(self, insert_data_command: str = INSERT_VALUES_INTO_TABLE,
+    def insert_into_table(self, insert_data_command: str = scripts_dictionary['insert_values'],
                           rows_to_insert: list = None):
         """Inserts data into table. Default command is src.constants.INSERT_VALUES_INTO_TABLE. Default rows to
         insert obtained by processing using GetArtistData class."""
@@ -50,3 +50,4 @@ class Connection:
     def read_sql_data_into_pandas(self, retrieval_command: str):
         """Retrieves data from database in pandas dataframe format."""
         self.data_in_python = read_sql_query(retrieval_command, self.connection)
+
