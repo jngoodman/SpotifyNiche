@@ -3,7 +3,7 @@ from pandas import read_sql_query
 from .migrate import migrate
 
 
-class Connection:
+class Database:
     _database_file: str
     _options: dict
 
