@@ -1,5 +1,5 @@
-from src.constants.__init__ import GRAPH, TEXT, EXTRACT_VALUES, TERMS
-from src.handle_sql_data.__init__ import retrieve_from_db
+from src.constants import GRAPH, TEXT, EXTRACT_VALUES, TERMS
+from src.handle_sql_data import retrieve_from_db
 from matplotlib import pyplot as plt
 
 

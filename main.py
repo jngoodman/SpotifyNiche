@@ -1,4 +1,4 @@
-from src.__init__ import construct_bar, get_sml_request, check_for_new_database, get_save_show_request
+from src import construct_bar, get_sml_request, check_for_new_database, get_save_show_request
 
 
 def main():
