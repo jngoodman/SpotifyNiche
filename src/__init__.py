@@ -1,6 +1,6 @@
 from .handle_raw_data import GetRawData, ConvertRawData
 from .graph import BarElements, FlavourText, Bar
-from .database import Database, create_db, retrieve_from_db
+from .database import Database, create_db
 from .user_inputs import (
     get_sml_request,
     check_for_new_database,
