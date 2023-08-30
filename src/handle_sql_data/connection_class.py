@@ -34,13 +34,12 @@ class Connection:
             cursor.close()
 
     def create_table(self, create_table_command: str = scripts_dictionary['create_table']):
-        """Creates table using create_table_command. Default command is src.constants.CREATE_DATA_STRUCTURE."""
+        """Creates table using value from scripts_dictionary dict by default.."""
         self.execute_sql_command(create_table_command)
 
     def insert_into_table(self, insert_data_command: str = scripts_dictionary['insert_values'],
                           rows_to_insert: list = None):
-        """Inserts data into table. Default command is src.constants.INSERT_VALUES_INTO_TABLE. Default rows to
-        insert obtained by processing using GetArtistData class."""
+        """Inserts data into table. Default command obtained from scripts_dictionary."""
         self.execute_sql_command(insert_data_command, rows_to_insert, many=True)
 
     def read_sql_data(self, retrieval_command: str):
