@@ -5,13 +5,17 @@ from .constants import CREATE_TOP_ARTIST_POPULARITIES_TABLE
 
 
 class Connection:
-    def __init__(self):
+    _database_file: str
+
+    def __init__(self, database_file: str):
+        self._database_file = database_file
+
         self.connection = None
         self.data_in_python = None
 
-    def create_connection(self, database_file):
+    def create_connection(self):
         """Establishes connection to database file."""
-        self.connection = connect(database_file)
+        self.connection = connect(self._database_file)
 
     def close_connection(self):
         """Closes connection."""
