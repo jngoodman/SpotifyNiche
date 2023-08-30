@@ -1,59 +1,58 @@
 from sqlite3 import connect
 from pandas import read_sql_query
-from ..constants import INSERT_VALUES_INTO_TABLE
-from .constants import CREATE_TOP_ARTIST_POPULARITIES_TABLE
+from .migrate import migrate
 
 
 class Connection:
     _database_file: str
-    data_in_python: list
+    _options: dict
 
-    def __init__(self, database_file: str):
+    def __init__(self, database_file: str, **kwargs):
         self._database_file = database_file
-        self.data_in_python = None
+        self._options = kwargs
 
     def create_connection(self):
         """Establishes connection to database file."""
         return connect(self._database_file)
 
-    def execute_sql_command(self, *args, many=False, fetch=False):
-        """Executes SQL commands using dynamic variables *args allowing insertion of both SQL commands and additional
-        required variables, e.g., as for cursor.executemany()"""
-        connection = self.create_connection()
-        if connection:
+    def migrate(self):
+        """Creates the database."""
+        con = self.create_connection()
+        migrate(con).close()
+
+    def insert(self, query: str, params):
+        self._print_query(query, params)
+
+        with self.create_connection() as connection:
             cursor = connection.cursor()
-            if not many:
-                cursor.execute(*args)
+            if len(params) > 1:
+                cursor.executemany(query, params)
             else:
-                cursor.executemany(*args)
-            if fetch:
-                self.data_in_python = cursor.fetchall()
-            connection.commit()
+                cursor.execute(query, params)
+
+    def select(self, query: str, params=None):
+        self._print_query(query, params)
+
+        with self.create_connection() as connection:
+            cursor = connection.cursor()
+
+            if not params or len(params) == 0:
+                cursor.execute(query)
+            else:
+                cursor.execute(query, params)
+
+            data = cursor.fetchall()
             cursor.close()
 
-        connection.close()
+            print(data)
 
-    def create_table(
-        self, create_table_command: str = CREATE_TOP_ARTIST_POPULARITIES_TABLE
-    ):
-        """Creates table using create_table_command. Default command is src.constants.CREATE_TOP_ARTIST_POPULARITIES_TABLE."""
-        self.execute_sql_command(create_table_command)
+            return data
 
-    def insert_into_table(
-        self,
-        insert_data_command: str = INSERT_VALUES_INTO_TABLE,
-        rows_to_insert: list = None,
-    ):
-        """Inserts data into table. Default command is src.constants.INSERT_VALUES_INTO_TABLE. Default rows to
-        insert obtained by processing using GetArtistData class."""
-        self.execute_sql_command(insert_data_command, rows_to_insert, many=True)
-
-    def read_sql_data(self, retrieval_command: str):
-        """Retrieves data from database."""
-        self.execute_sql_command(retrieval_command, fetch=True)
+    def _print_query(self, query, params):
+        if "print" in self._options and self._options["print"] == True or True:
+            print(query)
+            print(params)
 
     def read_sql_data_into_pandas(self, retrieval_command: str):
         """Retrieves data from database in pandas dataframe format."""
-        self.data_in_python = read_sql_query(
-            retrieval_command, self.create_connection()
-        )
+        return read_sql_query(retrieval_command, self.create_connection())

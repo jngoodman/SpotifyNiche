@@ -8,7 +8,6 @@ def retrieve_from_db(retrieval_command, pandas=False):
     """
     connection = Connection(SQL_DATA)
     if not pandas:
-        connection.read_sql_data(retrieval_command)
-    else:
-        connection.read_sql_data_into_pandas(retrieval_command)
-    return connection.data_in_python
+        return connection.select(retrieval_command)
+
+    return connection.read_sql_data_into_pandas(retrieval_command)
