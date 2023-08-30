@@ -20,41 +20,51 @@ class Database:
         con = self.create_connection()
         migrate(con).close()
 
-    def insert(self, query: str, params):
+    def insert(self, query: str, params) -> int:
         self._print_query(query, params)
 
-        with self.create_connection() as connection:
-            cursor = connection.cursor()
-            if len(params) > 1:
-                cursor.executemany(query, params)
-            else:
-                cursor.execute(query, params)
+        connection = self.create_connection()
+        cursor = connection.cursor()
+        if len(params) > 1:
+            cursor.executemany(query, params)
+        else:
+            cursor.execute(query, params)
+
+        connection.commit()
+
+        id = cursor.lastrowid
+        cursor.close()
+        connection.close()
+
+        return id
 
     def select(self, query: str, params=None):
         self._print_query(query, params)
 
-        with self.create_connection() as connection:
-            cursor = connection.cursor()
+        connection = self.create_connection()
+        cursor = connection.cursor()
 
-            if not params or len(params) == 0:
-                cursor.execute(query)
-            else:
-                cursor.execute(query, params)
+        if not params or len(params) == 0:
+            cursor.execute(query)
+        else:
+            cursor.execute(query, params)
 
-            data = cursor.fetchall()
-            cursor.close()
+        data = cursor.fetchall()
+        cursor.close()
+        connection.close()
 
-            print(data)
-            print()
+        print(data)
 
-            return data
+        return data
 
     def _print_query(self, query, params):
         if "print" in self._options and self._options["print"] == True:
+            print()
             print(query)
             print(params)
-            print()
 
-    def read_sql_data_into_pandas(self, retrieval_command: str):
+    def read_sql_data_into_pandas(self, retrieval_command: str, params):
         """Retrieves data from database in pandas dataframe format."""
-        return read_sql_query(retrieval_command, self.create_connection())
+        return read_sql_query(
+            retrieval_command, self.create_connection(), params=params
+        )
