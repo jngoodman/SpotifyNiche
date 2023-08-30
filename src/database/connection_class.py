@@ -45,13 +45,15 @@ class Connection:
             cursor.close()
 
             print(data)
+            print()
 
             return data
 
     def _print_query(self, query, params):
-        if "print" in self._options and self._options["print"] == True or True:
+        if "print" in self._options and self._options["print"] == True:
             print(query)
             print(params)
+            print()
 
     def read_sql_data_into_pandas(self, retrieval_command: str):
         """Retrieves data from database in pandas dataframe format."""
