@@ -7,24 +7,15 @@ from .graph_elements import BarElements
 
 
 class Bar:
-    def __init__(self, *args):
-        """Accepts 'short_term', 'medium_term' and 'long_term' as appropriate *args."""
-        self.terms: list = [*args]
-        self.data = None
+    terms: list[str]
+    means: dict
+    data: dict
 
-    def extract_data(self):
-        """Creates an ad-hoc SQLite command to allow data from the database to be recovered in a pandas format
-        based on the terms requested in *args"""
-        extraction_list = []
-        counter = 1
-        for term in self.terms:
-            extraction_list.append(f"term IS '{term}'")
-            if counter < len(self.terms):
-                extraction_list.append("OR")
-            counter += 1
-        extraction_string = " ".join(extraction_list)
-        sql_command = f"""{EXTRACT_VALUES.VALUES_INTRO} {extraction_string} {EXTRACT_VALUES.VALUES_OUTRO}"""
-        self.data = retrieve_from_db(sql_command, pandas=True)
+    def __init__(self, terms: list[str], means: dict, data: dict):
+        """Accepts `'short_term'`, `'medium_term'` and `'long_term'` as appropriate terms."""
+        self.terms = terms
+        self.means = means
+        self.data = data
 
     def construct_bars(self):
         """Generates pyplot figure. Plots popularity data on to its range to force inclusion of duplicates, then
@@ -92,11 +83,12 @@ class Bar:
 
     def add_elements(self):
         """Adds legend and flavour text elements to the graph."""
-        BarElements(*self.terms).return_vertical_lines()
+        BarElements(self.terms, self.means).return_vertical_lines()
         plt.legend(
-            loc="lower right", handles=BarElements(*self.terms).construct_legend()
+            loc="lower right",
+            handles=BarElements(self.terms, self.means).construct_legend(),
         )
-        FlavourText(*self.terms).return_flavour_text()
+        FlavourText(self.terms, self.means).return_flavour_text()
 
     @staticmethod
     def show_bar():

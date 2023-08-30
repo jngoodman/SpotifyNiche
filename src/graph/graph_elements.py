@@ -1,22 +1,21 @@
 from matplotlib import patches, pyplot as plt
-from ..constants import EXTRACT_VALUES
 from .constants import GRAPH
-from ..database import retrieve_from_db
 
 
 class BarElements:
-    def __init__(self, *args: str):
-        self.terms: list = [*args]
-        self.means: dict = dict(
-            (term, mean) for term, mean in retrieve_from_db(EXTRACT_VALUES.AVG)
-        )
+    terms: list[str]
+    means: dict
+
+    def __init__(self, terms: list[str], means: dict):
+        self.terms = terms
+        self.means = means
 
     def construct_legend(self):
         """Composes a legend from automatically-generated legends (vertical lines) and a manually generated legend
         for the bars. Manual generation is to prevent individual legend entries for each bar, since bars are coloured
         entry-by-entry."""
         axes = plt.gca()
-        handle_list, labels = axes.get_legend_handles_labels()
+        handle_list, _ = axes.get_legend_handles_labels()
         for term in self.terms:
             handle_list.append(
                 patches.Patch(

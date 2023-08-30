@@ -1,22 +1,23 @@
-from ..constants import EXTRACT_VALUES, TERMS
+from ..constants import TERMS
 from .constants import GRAPH, TEXT
-from ..database import retrieve_from_db
+from ..data_service import data_service
 from matplotlib import pyplot as plt
 
 
 class FlavourText:
-    def __init__(self, *args):
-        self.terms: list = [*args]
-        self.means: dict = dict(
-            (term, mean) for term, mean in retrieve_from_db(EXTRACT_VALUES.AVG)
-        )
+    terms: list[str]
+    means: dict
+
+    def __init__(self, terms, means: dict):
+        self.terms = terms
+        self.means = means
         self.most_popular_artists: dict = dict(
-            (term, artist)
-            for term, artist, popularity in retrieve_from_db(EXTRACT_VALUES.MOST)
+            (result.term, result.popularity)
+            for result in data_service.get_most_popular_artists_by_term()
         )
         self.least_popular_artists: dict = dict(
-            (term, artist)
-            for term, artist, popularity in retrieve_from_db(EXTRACT_VALUES.LEAST)
+            (result.term, result.popularity)
+            for result in data_service.get_least_popular_artists_by_term()
         )
 
     def _get_direction_of_niche_text(self):
