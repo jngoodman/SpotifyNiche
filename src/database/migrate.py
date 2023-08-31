@@ -6,7 +6,7 @@ def migrate(conn: sqlite3.Connection) -> sqlite3.Connection:
 
     cur.execute(
         """
-        CREATE TABLE 
+        CREATE TABLE IF NOT EXISTS
         top_artist_popularities (
         id INTEGER PRIMARY KEY,
         artist_name TEXT NOT NULL,
