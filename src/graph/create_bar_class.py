@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 from .constants import GRAPH
 from .flavour_text import FlavourText
 from .graph_elements import BarElements
+from ..data_service import DataService
 
 
 class Bar:
@@ -79,14 +80,16 @@ class Bar:
             weight=GRAPH.TITLE["weight"],
         )
 
-    def add_elements(self):
+    def add_elements(self, data_service: DataService):
         """Adds legend and flavour text elements to the graph."""
         BarElements(self.terms, self.means).return_vertical_lines()
         plt.legend(
             loc="lower right",
             handles=BarElements(self.terms, self.means).construct_legend(),
         )
-        FlavourText(self.terms, self.means).return_flavour_text()
+        FlavourText(
+            self.terms, self.means, data_service=data_service
+        ).return_flavour_text()
 
     @staticmethod
     def show_bar():

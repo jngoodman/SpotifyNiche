@@ -1,6 +1,5 @@
 from os import path, remove
-from .constants import SQL_DATA
-from .spotify import SpotifyService, TERMS
+from .spotify.service import SpotifyService, TERMS
 from .data_service import DataService, Record
 from .graph import Bar
 

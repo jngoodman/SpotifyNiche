@@ -15,5 +15,5 @@ def construct_bar(*args: str, data_service: DataService):
     bar.determine_title_suffix()
     bar.adjust_axes()
     bar.adjust_labels()
-    bar.add_elements()
+    bar.add_elements(data_service)
     return bar
