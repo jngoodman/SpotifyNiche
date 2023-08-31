@@ -6,8 +6,8 @@ from .graph_elements import BarElements
 
 class Bar:
     terms: list[str]
-    means: dict
-    data: dict
+    means: dict[str, list]
+    data: dict[str, list]
 
     def __init__(self, terms: list[str], means: dict, data: dict):
         """Accepts `'short_term'`, `'medium_term'` and `'long_term'` as appropriate terms."""
