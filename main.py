@@ -19,7 +19,10 @@ redirect_uri = getenv("REDIRECT_URI")
 
 def main():
     """Runs database creation command and allows user-specified response to generate requested graph."""
-    data_service = DataService(Database(SQL_DATA, print=True))
+    database = Database(SQL_DATA, print=True)
+    database.migrate()
+
+    data_service = DataService(database)
     input_controller = InputController(
         data_service,
         create_spotify_service(
@@ -34,7 +37,7 @@ def main():
     request_input_list = input_controller.get_sml_request()
     output_terms = [requests_dict[input_item] for input_item in request_input_list]
 
-    bar = construct_bar(*output_terms)
+    bar = construct_bar(*output_terms, data_service=data_service)
 
     input_controller.get_save_show_request(bar)
 
