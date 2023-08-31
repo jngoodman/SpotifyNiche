@@ -1,6 +1,6 @@
 from ..constants import TERMS
 from .constants import GRAPH, TEXT
-from ..data_service import data_service
+from ..data_service import DataService
 from matplotlib import pyplot as plt
 
 
@@ -8,7 +8,7 @@ class FlavourText:
     terms: list[str]
     means: dict
 
-    def __init__(self, terms, means: dict):
+    def __init__(self, terms, means: dict, data_service: DataService):
         self.terms = terms
         self.means = means
         self.most_popular_artists: dict = dict(

@@ -1,10 +1,8 @@
-from .graph import BarElements, FlavourText, Bar
-from .constants import SQL_DATA
-from .data_service.service import DataService
-from .data_service import data_service
+from .graph import Bar
+from .data_service import DataService
 
 
-def construct_bar(*args: str):
+def construct_bar(*args: str, data_service: DataService):
     terms = [*args]
     means = dict(
         (result.term, result.popularity)
