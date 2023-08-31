@@ -12,6 +12,9 @@ class Record:
     def from_row(row: dict):
         return Record(term=row[0], artist_name=row[1], popularity=row[2])
 
+    def to_list(self):
+        return [self.artist_name, self.popularity, self.term]
+
 
 class DataService:
     _database: Database
@@ -48,3 +51,14 @@ class DataService:
             """SELECT term, artist_name, AVG(popularity) FROM top_artist_popularities GROUP BY term"""
         )
         return [Record.from_row(row) for row in data]
+
+    def delete_existing_data(self):
+        self._database.delete("DELETE FROM top_artist_popularities")
+
+    def create_records(self, records: list[Record]):
+        self._database.insert(
+            """INSERT INTO 
+            top_artist_popularities (artist_name, popularity, term)
+            VALUES(?, ?, ?);""",
+            [record.to_list() for record in records],
+        )
