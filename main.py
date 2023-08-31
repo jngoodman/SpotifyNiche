@@ -5,6 +5,9 @@ from src import (
 from src.user_inputs import InputController
 from src.spotify import spotify_service
 from src.data_service import data_service
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def main():
