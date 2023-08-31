@@ -36,19 +36,19 @@ class DataService:
 
     def get_most_popular_artists_by_term(self):
         data = self._database.select(
-            """SELECT term, artist_name, MAX(popularity) FROM top_artist_popularities GROUP BY term"""
+            """SELECT term, artist_name, MAX(popularity) FROM top_artist_popularities GROUP BY term ORDER BY term"""
         )
         return [Record.from_row(row) for row in data]
 
     def get_least_popular_artists_by_term(self):
         data = self._database.select(
-            """SELECT term, artist_name, MIN(popularity) FROM top_artist_popularities GROUP BY term"""
+            """SELECT term, artist_name, MIN(popularity) FROM top_artist_popularities GROUP BY term ORDER BY term"""
         )
         return [Record.from_row(row) for row in data]
 
     def get_average_popular_artists_by_term(self):
         data = self._database.select(
-            """SELECT term, artist_name, AVG(popularity) FROM top_artist_popularities GROUP BY term"""
+            """SELECT term, artist_name, AVG(popularity) FROM top_artist_popularities GROUP BY term ORDER BY term"""
         )
         return [Record.from_row(row) for row in data]
 
