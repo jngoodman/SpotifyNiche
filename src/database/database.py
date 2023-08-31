@@ -38,6 +38,16 @@ class Database:
 
         return id
 
+    def delete(self, query: str):
+        self._print_query(query)
+
+        connection = self.create_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        connection.commit()
+        cursor.close()
+        connection.close()
+
     def select(self, query: str, params=None):
         self._print_query(query, params)
 
@@ -57,7 +67,7 @@ class Database:
 
         return data
 
-    def _print_query(self, query, params):
+    def _print_query(self, query, params=None):
         if "print" in self._options and self._options["print"] == True:
             print()
             print(query)
